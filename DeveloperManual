@@ -1,0 +1,26 @@
+
+
+Overview
+------------------------------------------------------------------------------------------------------------------------
+Created by ibrahim shweiki
+email: enge.sibrahim@gmail.com 
+The developer manual offers programmers documentation  about  JCEontology
+-----------------------------------------------------------------------------------------------------------------------
+About the manual:
+------------------
+Audience
+--------
+This application can create ontology RDF\OWL file from books Metadata 
+This manual is intended for programmers wishing to customize or extend on building Ontology concepts in JCEontology  or  interact  with the ontology API and RDF file that was built.
+Programmers wishing to extend or customize JCEontology are expected to know and understand Python as well as object oriented design principles
+Programmers wishing to take advantage of the API need only a basic understanding of working with Ontology based APIs. They should know how to build ontology and create RDF Files ,and should have good knowledge in languages and  libraries that allows them to create wider RDF files with more information and  build ontologies in other languages (Hebrew,Russian,French,Arabic,..Etc) 
+----------------------------------------------------------------------
+What is in the manual?
+-----------------------
+This manual will cover all aspects of custom development stages with JCEontology
+•	JCEontology contains functions that deal with natural language process in English but needs to be more accurate with analyzing language structure to include all language grammars
+•	JCEontology deals  with the  English language only . New developers can improve and add support to different languages.
+•	JCEontology creates an  RDF file with information extracted from specific metadata of different books.More information can be used to add a better view of the ontology 
+•	JCEontology has a Functional interface . The developer can create a user interface that adds more functionality.
+•	Can also add Protégé plug-in and create the ontology graph from the interface and also make it a complete program by creating a dynamic interface to edit ontology files and present  the  ontology Taxonomy and graph.
+•	Can also make search tools depend on SPRQL query to search for data inside the RDF\OWL file .
