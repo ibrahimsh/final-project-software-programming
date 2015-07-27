@@ -1,5 +1,4 @@
 __author__ = 'MatrixRev'
-
 import os
 import re
 import json
@@ -7,10 +6,10 @@ import codecs
 from collections import defaultdict
 import string
 
-library_path = "C://Users//MatrixRev//Desktop//books//dir_9//"
-test_path = "C://Users//MatrixRev//Desktop//marcPackage//"
-error_log = "C://Users//MatrixRev//Desktop//marcPackage//error_log"
 
+library_path="C://Users//MatrixRev//Desktop//library_12//" # output file path
+data_path="C://Users//MatrixRev//Dropbox//data" # input Marc file director
+error_log="C://Users//MatrixRev//Desktop//log"
 libraryISBN = {}
 libraryTITLE = {}
 conflicts = defaultdict(list)
@@ -33,6 +32,7 @@ def getTitle(elt):
 
 def getTitle(elt):
     title = ' '.join(elt.split()[2:]).rstrip(' .,;\'\"[]:')
+
     #print title
     return title
 
@@ -111,31 +111,31 @@ def mergeBooks(book1,book2):
 
 def makebook():
     return ({"isbn":"",
-          "title":"",
-          "fulltitle":"",
-          "volume":[],
-          "volName":"",
-          "subtitle":[],
-          "format":"",
-          "serialNum":[],
-          "editors":[],
-          "subjects":[],
-          "authors":[],
-          "titleAdditions":[],
-          "authorDates":[],
-          "language":"",
-          "sourceLanguage":"",
-          "publisher":[],
-          "publisherAddress":[],
-          "date":[],
-          #"physical":[],
-          "pages":[],
-          "addendum":[],
-          "size":[],
-          "comments":[],
-          "dewey":"",
-          "trans_eds_ills":[],
-          "conflicts":[]})
+             "title":"",
+             "fulltitle":"",
+             "volume":[],
+             "volName":"",
+             "subtitle":[],
+             "format":"",
+             "serialNum":[],
+             "editors":[],
+             "subjects":[],
+             "authors":[],
+             "titleAdditions":[],
+             "authorDates":[],
+             "language":"",
+             "sourceLanguage":"",
+             "publisher":[],
+             "publisherAddress":[],
+             "date":[],
+             #"physical":[],
+             "pages":[],
+             "addendum":[],
+             "size":[],
+             "comments":[],
+             "dewey":"",
+             "trans_eds_ills":[],
+             "conflicts":[]})
 
 
 
@@ -181,11 +181,11 @@ def bookInstance(book):
 
 
 
-            #if len(title)>1:
-            #    bookInst['titleAdditions'].extend(title[1:])
+                    #if len(title)>1:
+                    #    bookInst['titleAdditions'].extend(title[1:])
 
-            #if len(mainTitle)>1:
-            #    bookInst['subtitle']=mainTitle[1:]
+                    #if len(mainTitle)>1:
+                    #    bookInst['subtitle']=mainTitle[1:]
 
         elif code.startswith("6"):#code == '650' or 651 or code=='695' or code=='6000' or '60014'':
             subject = ' '.join(elt.split(' ')[3:]).rstrip('.,/;:[]').split('$$')[1:]
@@ -241,22 +241,25 @@ def bookInstance(book):
     return(bookInst)
 
 def makeDirForLetter(letter):
+
     dir = os.path.join(library_path,letter + "_dir")
     if not os.path.exists(dir):
-        os.makedirs(dir)
+          os.makedirs(dir,0777)
     return(dir)
 
 def first_letter(name):
 
-    return name[0]
+   return name[0]
+
 
 def writeBook(bookInst, uniqueID):
-
-    letter = first_letter(uniqueID.strip())
-
+    uniqueID = re.sub(r'[\'"~`!@#$%^&*()=+_\[\]{}:;/.,\\|}<>-]', '', uniqueID)
+    #uniqueID=re.sub(r'[^\w]',r'',uniqueID)
+    letter = first_letter(uniqueID)
     dir=makeDirForLetter(letter)
     #print uniqueID
     uniqueID = uniqueID.replace('/', "")
+    uniqueID=uniqueID+".json"
     #print uniqueID
     try:
         with codecs.open(os.path.join(dir, uniqueID), 'w', encoding='utf-8') as f:
@@ -321,14 +324,17 @@ currentBook = dict()
 allBooks = {}
 
 #
-with codecs.open(os.path.join(test_path, "sample.marc"), 'rb', encoding="utf-8") as fh:
-#with codecs.open(os.path.join(data_path, "doc.seqao"), 'rb',encoding="utf-8") as fh:
+#with codecs.open(os.path.join(test_path, "sample.marc"), 'rb', encoding="utf-8") as fh:
+with codecs.open(os.path.join(data_path, "doc.seqaa"), 'rb',encoding="utf-8") as fh:
 
     #reader = MARCReader(fh)
 
     for line in fh: #must make a record from each field
+        #nline = re.sub(r'[^\w]',r' ',line)
+        #nline=re.sub('[%s]' % re.escape(string.punctuation), '', nline)
         lineElts =line.split(' ')
-        print(lineElts[3])
+        #print nline
+        print lineElts[3]
         if newRecord:
             bookSerial = lineElts[0]
             #print(bookSerial)
@@ -352,21 +358,26 @@ with codecs.open(os.path.join(test_path, "sample.marc"), 'rb', encoding="utf-8")
             #print '.',
 
 
-isbnFile = 'C://Users//MatrixRev//Desktop//books//output//booksISBN.json'
-titlesFile = 'C://Users//MatrixRev//Desktop//books//output//booksTITLES.json'
-conflictsFile = 'C://Users//MatrixRev//Desktop//books//output//booksConflicts.json'
+#data=json.dumps(allBooks, indent=4, ensure_ascii=False)
+#print "writing to file now"
+
+
+
+
+isbnFile = 'C://Users//MatrixRev//Desktop//libbooks//booksISBN.json'
+titlesFile = 'C://Users//MatrixRev//Desktop//libbooks//booksTITLES.json'
+conflictsFile = 'C://Users//MatrixRev//Desktop//libbooks//booksConflicts.json'
 
 with codecs.open(isbnFile, 'w', encoding='utf-8') as f:
     f.write(json.dumps(libraryISBN, indent=4, ensure_ascii=False, encoding="utf-8"))
 
 
 with codecs.open(titlesFile, 'w', encoding='utf-8') as f:
-   f.write(json.dumps(libraryTITLE, indent=4, ensure_ascii=False, encoding="utf-8"))
+    f.write(json.dumps(libraryTITLE, indent=4, ensure_ascii=False, encoding="utf-8"))
 
 with codecs.open(conflictsFile, 'w', encoding='utf-8') as f:
 
     f.write(json.dumps(conflicts.items(), indent=4, ensure_ascii=False, encoding="utf-8"))
-
 
 
 
