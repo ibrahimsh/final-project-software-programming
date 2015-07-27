@@ -1,0 +1,35 @@
+#################################################################################################################
+Extracting ontological knowledge from keywords describing books in the United Catalogue of the National Library.
+#################################################################################################################
+---------------------------
+Requirements:
+---------------------------
+a) Data access(files) - getting from national library website 
+b) PyCharm code editor -  download from https://www.jetbrains.com/pycharm/
+c) python 3.4  - download from https://www.python.org/downloads/
+d) RdfLib  - download from http://rdflib.readthedocs.org/en/latest/
+e) NLTK (Natural Language Process Tool kit) - download from http://www.nltk.org/install.html
+f) Jason
+g) portege ontology editor  - download from http://protege.stanford.edu/
+h) Fuseki server 
+i) windows 7 or Unix 
+
+---------------------------
+User Manual:
+---------------------------
+After installing all the Requirements, run the application and follow the instructions:
+step 1: uploading the python code files (sympolTable.py,Hashtable.py,rdfOntology.py,marcParse.py,jsonParser.py)
+step 2: downloading the subjects.txt file or if needed expand the subjects file need by downloading the MARC files from the national library website and saving them
+			 on the computer then copying the link of the file path in MarcParser.py. To get the new data change, the directories where the new outPut files is stored.
+step 3: copying the new directories into jsonParser.py to get the new file that contains all the subjects in the text file.
+step 4: loading the new subjects text file directory into rdfOntology.py and running it to get the RDF file.	
+step 5: opening the portege software and importing the RDF file into portege to extract the data and show the ontology graph
+step 6: running the fuseki server then loading the RDF file that was created there then extracting the  data required using SPARQL queries.
+		to run fuseki server : http://jena.apache.org/documentation/serving_data/#getting-started-with-fuseki 
+
+		***********************************************************************************************************************
+		note : very important to get the right files directories when changing in code files by following the code instructions
+		***********************************************************************************************************************
+
+
+
