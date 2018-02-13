@@ -17,7 +17,7 @@ department : computer software engineering.
 
 college : Azrieli Jerusalem engineering collage 
 *************************************************************************************************************************
-This Application get books meta-data as input  and builds RDF File 
+The Tool use books meta-data as input  and builds ontology in formate RDF file and OWL file  
 *************************************************************************************************************************
 classes and models:
 ************************************************************************************************************************
