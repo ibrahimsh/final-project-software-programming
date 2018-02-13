@@ -1,4 +1,4 @@
-final-project-software-programming
+afinal-project-software-programming
 ==================================
 
 *************************************************************************************************************************
@@ -15,7 +15,7 @@ github repository : https://github.com/ibrahimsh/final-project-software-programm
 
 department : computer software engineering.
 
-college : Azrieli Jerusalem engineering college 
+college : Azrieli Jerusalem engineering collage 
 *************************************************************************************************************************
 This Application get books meta-data as input  and builds RDF File 
 *************************************************************************************************************************
